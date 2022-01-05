@@ -1,0 +1,280 @@
+\documentclass{article}
+
+\usepackage{fontspec}
+\usepackage{iftex}
+\ifXeTeX{}
+   \setmainfont{cmun}[
+    Extension=.otf,UprightFont=*rm,ItalicFont=*ti,
+    BoldFont=*bx,BoldItalicFont=*bi,
+   ]
+   \setsansfont{cmun}[
+    Extension=.otf,UprightFont=*ss,ItalicFont=*si,
+    BoldFont=*sx,BoldItalicFont=*so,
+   ]
+   \setmonofont{cmun}[
+    Extension=.otf,UprightFont=*btl,ItalicFont=*bto,
+    BoldFont=*tb,BoldItalicFont=*tx,
+   ]
+\else
+   \setmainfont{CMU Serif}
+   \setsansfont{CMU Sans Serif}
+   \setmonofont{CMU Typewriter Text}
+\fi
+\defaultfontfeatures{Ligatures=TeX}
+\usepackage{polyglossia}
+\usepackage[autostyle=true]{csquotes}
+\setdefaultlanguage{russian}
+\setotherlanguage{english}
+\frenchspacing{}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[colorlinks]{hyperref}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Определение}
+\theoremstyle{plain}
+\newtheorem{theorem}{Теорема}
+\newtheorem{lemma}{Лемма}
+
+\author{Александр Старовойтов %
+$<$\href{https://t.me/stewkk}%
+{Telegram}$>$}
+\title{Ответы на вопросы 36-38}
+
+\begin{document}
+\maketitle
+\section{Вопрос 36}
+\textbf{Дать определение группы подстановок.
+Сформулировать и доказать теорему о разложении подстановки в произведение независимых циклов и произведение транспозиций.}
+
+\begin{definition}[Группа подстановок (или группа перестановок)]
+  Это множество всех биекций n-элементного множества на себя с операцией композиции биекций.
+  Множество всех перестановок множества $\{1, 2, \ldots{} n\}$ обозначается $S_{n}$.
+\end{definition}
+Элемент этой группы называется подстановкой:
+\begin{equation*}
+  \pi =
+  \begin{pmatrix}
+    1 & 2 & \ldots & n\\
+    i_{1} & i_{2} & \ldots & i_{n}
+  \end{pmatrix}
+\end{equation*}
+$\pi(1) = i_{1}, \pi(2) = i_{2} \ldots$
+
+Операцию композиции будем называть произведением $(\pi\circ\rho)(x) = \rho(\pi(x))$.
+
+Через $\begin{pmatrix}i_{1}&i_{2}&\ldots&i_{n}\end{pmatrix}$ обозначается цикл длины n, который переводит $i_{1} \mapsto i_{2}$, $i_{2} \mapsto i_{3}$, \ldots, $i_{n} \mapsto i_{1}$.
+Циклы являются независимыми, если они представляют непересекающиеся множества элементов.
+
+Транспозицией называется цикл длины 2.
+
+\begin{theorem}[О разложении подстановки в произведение независимых циклов и произведение транспозиций]
+  a) Любая перестановка разбивается в произведение непересекающихся циклов.
+  б) Любая перестановка может быть представлена в виде произведения транспозиций.
+\end{theorem}
+\begin{proof}
+  а) Пусть $\pi \in S_{n}$. Если \forall i \pi(i)=i, то \pi{} = e.
+
+  Пусть $\exists i: \pi(i) \neq i$ и $i_{1}$ --- первый такой элемент, что $\pi(i_{1}) \neq i_{1} \Rightarrow \pi(i_{1}) > i_{1}$\\
+  Тогда пусть $\pi(i_{1}) = i_{2}$; Ясно, что $\pi(i_{2}) \neq i_{2}$ (иначе перестановка не взаимооднозначна) $\Rightarrow \pi(i_{2}) = i_{3}$\\
+  $|M| < \infty \Rightarrow \exists k \in \mathbb{N}: i_{k} \neq i_{1}, i_{k + 1} = \pi(i_{k}) = i_{1}$\\
+  $\pi_{1} = \begin{pmatrix}i_{1}&i_{2}&\ldots&i_{k}\end{pmatrix}$\\
+  Рассмотрим $\pi' = \pi \pi_{1}^{-1}$\\
+  В $\pi'$ элементы $1, 2, \ldots{} i_{1}$ остаются на месте.
+  Также остаются на месте элементы $i_{2}, \ldots, i_{k}$.
+  Повторим рассуждение для $\pi'$.
+  Получим цикл $\pi_{2}$, не пересекающийся с $\pi_{1}$; $\pi'' = \pi \pi_{1}^{-1} \pi_{2}^{-1}$, в $\pi''$ неподвижных элементов стало больше и т.д.
+
+  После конечного числа шагов получим
+  \begin{equation*}
+    \pi \pi_{1}^{-1} \pi_{2}^{-1} \ldots \pi_{s}^{-1} = e
+  \end{equation*}
+  \begin{equation*}
+    \pi = \pi_{s}\pi_{s-1} \ldots \pi_{1} \text{ --- требуемое разложение}
+  \end{equation*}
+
+  \emph{Единственность}:
+  пусть $\pi = \pi_{1} \pi_{2} \ldots \pi_{s} = \tau_{1} \tau_{2} \ldots \tau_{r}$ --- два таких разложения.
+  $i_{1}$ --- первый элемент, который не остается на месте: $\pi(i_{1}) \neq i_{1}$.
+  Можно считать, что $i_{1}$ входит в $\pi_{1}$ и $\tau_{1}$.
+  Далее легко видеть, что $\pi_{1} = \tau_{1} \Rightarrow \pi_{2} = \tau_{2}, \ldots, \pi_{s} = \tau_{r}$
+
+  б) Ввиду а) достаточно разложить на транспозиции любой цикл.
+  \begin{equation*}
+    \begin{pmatrix}
+      i_{1}&i_{2}&\ldots&i_{k}
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+      i_{1}&i_{2}
+    \end{pmatrix}
+    \begin{pmatrix}
+      i_{1}&i_{3}
+    \end{pmatrix}
+    \ldots
+    \begin{pmatrix}
+      i_{1}&i_{k}
+    \end{pmatrix}
+  \end{equation*}
+\end{proof}
+
+\section{Вопрос 37}
+\textbf{Дать определение чётной и нечётной подстановки.
+Объяснить и обосновать, как чётность подстановки определяется по её разложению в произведение транспозиций.
+Дать определение знакопеременной группы.}
+
+\begin{definition}[Четная и нечетная подстановка]
+  Подстановка $\pi \in S_{n}$ четная, если количество инверсий в $\pi$ четное, и нечетная в противном случае.\\
+  $\pi \in S_{n}$, $1 \leq i < j \leq n$.
+  Пара $(i, j)$ --- инверсия, если $\pi(i) > \pi(j)$.
+\end{definition}
+
+Подстановка $\pi \in S_{n}$ является четной $\Leftrightarrow$ количество транспозиций в ее разложении на транспозиции четно.
+
+\begin{proof}
+  Достаточно доказать, что если $\tau$ --- транспозиция, то подстановки $\pi$ и $\tau \pi$ имеют разную четность.
+
+  Если $\tau = (i\ j) = (i\ i+1)(i+1\ i+2)\dots(j-1\ j)(j-2\ j-1)\ldots(i\ i+1)$.
+  В этом разложении $j - i + j - i - 1 = 2 (j - i) - 1$ --- нечетное число транспозиций.\\
+  $\Rightarrow$ можно считать, что $\tau$ переставляет соседние элементы.
+
+  Пусть $\tau = (k\ k+1)$\\
+  $\tau' = \tau\pi$
+  \begin{equation*}
+    \pi =
+    \begin{pmatrix}
+      1 & \ldots & k & & k + 1 & \ldots & n\\
+      i_{1} & \ldots & i_{k} & & i_{k+1} & \ldots & i_{n}
+    \end{pmatrix}
+  \end{equation*}
+  \begin{equation*}
+    \pi' =
+    \begin{pmatrix}
+      1 & \ldots & k & & k + 1 & \ldots & n\\
+      i_{1} & \ldots & i_{k+1} & & i_{k} & \ldots & i_{n}
+    \end{pmatrix}
+  \end{equation*}
+  $\forall (l, m)$ --- инверсия в $\pi$\\
+  $l \neq k, k+1, m \neq k, k+1 \Rightarrow (l, m)$ --- инверсия и в $\pi'$\\
+  $l = k, m > k+1 \Rightarrow$ пара $(k+1, m)$ --- инверсия в $\pi'$\\
+  $l = k+1 \Rightarrow (k, m)$ --- инверсия в $\pi'$\\
+  $l \neq k,k+1, m = k$ или $k+1$ --- аналогично
+
+  Пара $(k, k+1)$ правильная для $\pi \Leftrightarrow$ она инверсия для $\pi'$ $\Rightarrow i(\pi') = i(\pi) + 1$ т.е. четность разная.\\
+  Аналогично, если $(k, k+1)$ - инверсия для $\pi$, то она правильная для $\pi'$ $\Rightarrow i(\pi') = i(\pi) - 1$ т.е. четность разная.
+\end{proof}
+
+\begin{definition}[Знакопеременная группа]
+  Множество всех четных подстановок в группе $S_{n}$ образует подгруппу и называется знакопеременной группой на $n$ элементах.
+  Обозначается $A_{n}$.
+\end{definition}
+
+\section{Вопрос 38}
+\textbf{Дать определение кольца. Какое кольцо называется ассоциативным, коммутативным, кольцом с единицей?
+Сформулировать и обосновать основные положения теории делимости в кольце целых чисел: бесконечность множества простых чисел, деление с остатком, наибольший общий делитель и алгоритм Евклида, основная теорема арифметики.}
+
+\begin{definition}[Кольцо]
+  Кольцо --- алгебраическая структура $(R,+,\cdot)$ с двумя бинарными операциями, удовлетворяющими аксиомам кольца:\\
+  1. $(R, +)$ --- абелева группа;\\
+  2. Дистрибутивность: $\forall a, b, c\ $ $a(b + c) = ab + ac$ и $(a + b)c = ac + bc$
+\end{definition}
+Если операция умножения ассоциативна, то R называют \emph{ассоциативным кольцом}; коммутативна --- \emph{коммутативным кольцом}.
+Если существует нейтральный элемент по умножению, его обозначают 1, а кольцо называют \emph{кольцом с единицей}.
+
+\begin{theorem}[О бесконечности множества простых чисел]
+  Множество простых чисел бесконечно.
+\end{theorem}
+\begin{proof}
+  Пусть $p_{1},\ldots,p_{k}$ --- все простые числа.
+  Рассмотрим число $p = p_{1} \cdot p_{2} \cdot \ldots \cdot p_{k} + 1$.
+  $p$ не делится ни на одно из $p_{1},\ldots,p_{k}$.
+  Оно либо само простое, либо делится на простое $\neq p_{1},\ldots,p_{k}$. Противоречие.
+\end{proof}
+
+\begin{theorem}[О делении с остатком]
+  Пусть $a, b \in \mathbb{Z}, b \neq 0$.
+  Тогда $\exists! q, r \in \mathbb{Z}, 0 \leq r < |b|: a = qb+r$, где q --- (неполное) частное, а r --- остаток.
+\end{theorem}
+\begin{proof}
+  Рассмотрим множество $M = \{a - k \cdot b\ |\ k \in \mathbb{Z}\}$.
+  $r$ --- минимальное неотрицательное число множества $M$.
+
+  \emph{Существование}:
+  Покажем, что $r < |b|$:\\
+  Пусть $r \geq |b|$: $r = a - kb$\\
+  при $a \geq 0: r' = a - (k + 1)b$ \\
+  при $a < 0: r' = a + (k - 1)b$\\
+  $r' \in M, r' \geq 0, r' < r$ --- противоречие $\Rightarrow$ существование $q$ и $r$
+
+  \emph{Единственность}:
+  Пусть $a = q_{1}b + r_{1} = q_{2}b + r_{2}$;
+  $0 \leq r_{1} < |b|$, $0 \leq r_{2} < |b|$\\
+  Пусть $r_{2} \geq r_{1}$: $\underbrace{(q_{1} - q_{2})b}_{\geq |b|} = \underbrace{r_{2} - r_{1}}_{< |b|} \Rightarrow$ противоречие, если $q_{1} \neq q_{2}, r_{1} \neq r_{2}$
+\end{proof}
+
+\begin{definition}[НОД]
+Число $d \in \mathbb{N}$ называют \emph{наибольшим общим делителем} чисел $a, b \in \mathbb{Z}$, если $d|a$, $d|b$, и $d$ --- наибольшее число с таким свойством ($a \neq 0$ или $b \neq 0$).
+Обозначается $d = \text{НОД}(a, b) = gcd(a, b) = (a, b)$.
+\end{definition}
+
+\begin{definition}[Алгоритм Евклида]
+  \begin{align*}
+    &a, b \in \mathbb{Z}, b \neq 0\\
+    a &= q_{1}b+r_{1}, 0 \leq r_{1} < |b|\\
+    b &= q_{2}r_{1}+r_{2}, 0 \leq r_{2} < r_{1}\\
+    &\cdots\\
+    r_{k-2} &= q_{k}r_{k-1}+r_{k}, 0 \leq r_{n} < r_{k-1}\\
+    r_{k-1} &= q_{k+1} r_{k}
+  \end{align*}
+  $r_{k}$ --- последний ненулевой остаток.
+\end{definition}
+
+\begin{theorem}[НОД и алгоритм Евклида]
+  \begin{equation*}
+    d = (a, b) = r_{k}
+  \end{equation*}
+\end{theorem}
+\begin{proof}
+  Пойдем по алгоритму (сверху вниз)
+  $d | a, d | b \Rightarrow d | r_{1} \Rightarrow d | r_{2} \Rightarrow \ldots \Rightarrow d | r_{k}$\\
+  (снизу вверх) $r_{k}|r_{k-1} \Rightarrow r_{k}|r_{k-2} \Rightarrow \ldots \Rightarrow r_{k}|b, r_{k}|a \Rightarrow r_{k} = d$
+\end{proof}
+
+\begin{lemma}[Следствие алгоритма Евклида]\label{lemma:1}
+  Пусть $d = (a, b)$.
+  Тогда $\exists u, v \in \mathbb{Z}, d = ua + vb$.
+\end{lemma}
+\begin{proof}
+  $d = r_{k} = r_{k - 2} - q_{k} \cdot r_{k - 1} = r_{k - 2} - q_{k}(r_{k - 3} - q_{k - 1}r_{k - 2}) = \ldots = k_{1}a + k_{2}b$ --- выражение через $a$ и $b$
+\end{proof}
+
+\begin{lemma}\label{lemma:2}
+  Если $a, b \in \mathbb{Z}, p$ --- простое и $p | ab$, то $p|a$ или $p|b$
+\end{lemma}
+\begin{proof}
+  Пусть $p \nmid a$ и $p \nmid b \Rightarrow (p, a) = 1$ и $(p, b) = 1$\\
+  По Лемме~\ref{lemma:1} $\exists u_{1},u_{2},v_{1}, v_{2} \in \mathbb{Z}$\\
+  $u_{1}p+v_{1}a = 1$\\
+  $u_{2}p+v_{2}b = 1$ \\
+  перемножим: $u_{1}u_{2}p^{2} + u_{1}v_{2}pb + u_{2}v_{1}pa + v_{1}v_{2}ab = 1 \Rightarrow p|1$ -- противоречие
+\end{proof}
+
+\begin{theorem}[Основная теорема арифметики]
+  Любое целое число $a \in \mathbb{Z}$ можно представить в виде $a = \pm p_{1}p_{2}\ldots p_{k}$, где $p_{1}, \ldots, p_{k}$ --- простые числа.
+  Такое представление единственно с точностью до порядка множителей.
+\end{theorem}
+\begin{proof}
+  \emph{Существование:}
+  $a \in \mathbb{Z}$. Если $a = \pm p$, $p$ --- простое, то $a = \pm p$ --- требуемое разложение.
+  Если $a$ --- составное, то $a = bc$, где $|b|, |c| < |a|$.
+  Далее применяем те же рассуждения к $b$ и $c$.
+
+  \emph{Единственность:}
+  $a = \pm p_{1} \ldots p_{k} = \pm q_{1} \ldots q_{l}$\\
+  $p_{1}|q_{1} \ldots q_{l} \Rightarrow$ (по Лемме~\ref{lemma:2}) $\exists i p_{i}|q_{i}, p_{i},q_{i}$ --- простые $\Rightarrow p_{i} = q_{i}$.
+  Можно считать, что $i = 1, \Rightarrow p_{2} \ldots p_{k} = q_{2} \ldots q_{l}$, и т.д.
+\end{proof}
+\end{document}
