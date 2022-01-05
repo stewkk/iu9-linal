@@ -33,6 +33,7 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage[colorlinks]{hyperref}
+\usepackage{gauss}
 
 \theoremstyle{definition}
 \newtheorem{definition}{Определение}
@@ -47,16 +48,16 @@ $<$\href{https://t.me/stewkk}%
 
 \begin{document}
 \maketitle
-\section{Билет 9}
-\subsection{Задание 1}
-\subsection{Задание 2}
+\section*{Билет 9}
+\subsection*{Задание 1}
+\subsection*{Задание 2}
 $|\vec{a}| = 3; |\vec{b}| = \sqrt{2}; |\vec{c}| = 4$\\
 $( \widehat{\vec{a}, \vec{b}} ) = ( \widehat{\vec{b}, \vec{c}} ) = 45^{\circ}; ( \widehat{\vec{a}, \vec{c}} ) = 60^{\circ}$\\
 $-\vec{a} + 2 \vec{b} + \vec{c} =$ ?\\
 
 $\vec{d}^{2}=(-\vec{a} + 2 \vec{b} + \vec{c}, -\vec{a} + 2 \vec{b} + \vec{c}) = \vec{a}^{2} -2 \vec{a} \vec{b} - \vec{a} \vec{c} - 2 \vec{a} \vec{b} + 4 \vec{b}^{2} + 2 \vec{b} \vec{c} - \vec{a} \vec{c} + 2 \vec{b} \vec{c} + \vec{c}^{2} =$\\
 $9 + 8 + 16 - 4 \vec{a}\vec{b} - 2 \vec{a}\vec{c} + 4 \vec{b}\vec{c} = 33 - 12 - 12 + 16 = 25 \Rightarrow$ \fbox{$|\vec{d}|$ = 5}
-\subsection{Задание 3}
+\subsection*{Задание 3}
 \emph{Составить каноническое уравнение процекции прямой $L$ на \mbox{плоскость $\alpha$}}\\
 $L: \begin{cases}
   2x + 3y = 5\\
@@ -86,8 +87,46 @@ $M = (1, 1, 1) \in L; A = (0, 0, 1) \in \alpha; AM\{1, 1, 0\}$\\
 $\Rightarrow$ Пр$_{\alpha}M = (37/49, 31/49, 13/49)$\\
 Тогда уравнение проекции: \fbox{$\frac{x - 37/49}{3} = \frac{y - 31/49}{-2} = \frac{z - 13/49}{0}$}
 
-\subsection{Задание 4}
-\subsection{Задание 5}
+\subsection*{Задание 4}
+
+\emph{Найти \emph{НОД} многочленов $f$ и $g$ с коэффициентами в поле вычетов $\mathbb{Z}_{5}$}
+\[
+f = x^{5} + 3x^{4} + 2x^{3} + x^{2} + 3x + 2
+\]
+\[
+g = x^{4} + 2x^{3} + 3x + 1
+\]
+
+\noindent $
+x^{5} + 3x^{4} + 2x^{3} + x^{2} + 3x + 2
+=
+(x^{4} + 2x^{3} + 3x + 1)
+(x + 1)
++
+(3x^{2}+4x+1)
+$\\
+$
+2(3x^{2}+4x+1) = x^{2}+3x+2
+$\\
+$
+x^{4} + 2x^{3} + 3x + 1
+=
+(x^{2}+3x+2)
+(x^{2}+4x+1)
++
+(2x+4)
+$\\
+$
+3(2x+4) = x+2
+$\\
+$
+x^{2}+3x+2
+=
+(x + 2)
+(x + 1)
+$\\
+Последний ненулевой остаток $x + 2 \Rightarrow$ \fbox{НОД$(f, g) = x + 2$}
+\subsection*{Задание 5}
 \emph{Найти все матрицы перестановочные с матрицей $A$}\\
 $A =
 \begin{pmatrix}
@@ -100,11 +139,110 @@ $B =
 \begin{pmatrix}
   x_{1} & x_{2}\\
   x_{3} & x_{4}
-\end{pmatrix}$
+\end{pmatrix}$\\
+$AB =
+\begin{pmatrix}
+  1 & 2\\
+  3 & 1
+\end{pmatrix}
+\begin{pmatrix}
+  x_{1} & x_{2}\\
+  x_{3} & x_{4}
+\end{pmatrix}
+=
+\begin{pmatrix}
+  x_{1}+2x_{3} & x_{2} + 2x_{4}\\
+  3x_{1} + x_{3} & 3x_{2} + x_{4}
+\end{pmatrix}
+$\\
+$BA =
+\begin{pmatrix}
+  x_{1} & x_{2}\\
+  x_{3} & x_{4}
+\end{pmatrix}
+\begin{pmatrix}
+  1 & 2\\
+  3 & 1
+\end{pmatrix}
+=
+\begin{pmatrix}
+  x_{1}+3x_{2} & 2x_{1} + x_{2}\\
+  x_{3} + 3x_{4} & 2x_{3} + x_{4}
+\end{pmatrix}
+$\\
+$
+\begin{cases}
+  x_{1} + 2x_{3} = x_{1} + 3x_{2}\\
+  x_{2} + 2x_{4} = 2x_{1} + x_{2}\\
+  3x_{1} + x_{3} = x_{3} + 3x_{4}\\
+  3x_{2} + x_{4} = 2x_{3} + x_{4}
+\end{cases}
+$\\
+$
+\begin{cases}
+  -3x_{2} + 2x_{3} = 0\\
+  -2x_{1} + 2x_{4} = 0\\
+  3x_{1} - 3x_{4} = 0\\
+  3x_{2} - 2x_{3} = 0
+\end{cases}
+$\\
+\begin{multline*}
+\begin{gmatrix}[p]
+  0 & -3 & 2 & 0\\
+  -2 & 0 & 0 & 2\\
+  3 & 0 & 0 & -3\\
+  0 & 3 & -2 & 0
+  \rowops
+  \mult{2}{: 3}
+\end{gmatrix}
+=
+\begin{gmatrix}[p]
+  0 & -3 & 2 & 0\\
+  -2 & 0 & 0 & 2\\
+  1 & 0 & 0 & -1
+\end{gmatrix}
+=
+\begin{gmatrix}[p]
+  0 & -3 & 2 & 0\\
+  1 & 0 & 0 & -1
+  \rowops
+\end{gmatrix}
+\end{multline*}\\
+$
+x_{3} = c_{1}; x_{4} = c_{2}
+$\\
+$
+x_{1} - x_{4} = 0
+$\\
+$
+-3x_{2} + 2x_{3} = 0
+$\\
+$
+x_{1} = x_{4} = c_{2}
+$\\
+$
+x_{2} = \frac{2}{3}x_{3} = \frac{2}{3}c_{1}
+$\\
+$
+B =
+\begin{pmatrix}
+  x_{1} & x_{2}\\
+  x_{3} & x_{4}
+\end{pmatrix}
+=
+$
+\fbox{
+$
+\begin{pmatrix}
+  c_{2} & \frac{2}{3}c_{1}\\
+  c_{1} & c_{2}
+\end{pmatrix}
+$
+}
 
-\section{Билет 10}
-\subsection{Задание 1}
-\subsection{Задание 2}
+\section*{Билет 10}
+\subsection*{Задание 1}
+\subsection*{Задание 2}
 $ABCD$ --- тетраэдр\\
 $V_{ABCD} = 7; A = (-2,1,0); B = (0, -2, 1); C = (1, 0, -2)$\\
 $D = (x, y, z), y < 0$
@@ -120,9 +258,20 @@ $\begin{vmatrix}
 $-2z + 3y - 3 + 6x + 12 + x + 2 + 9z + 4y - 4 = 42$\\
 $7x + 7y + 7z = 35$\\
 \fbox{$D = (6, -1, 0)$}
-\subsection{Задание 3}
-\subsection{Задание 4}
-\subsection{Задание 5}
+\subsection*{Задание 3}
+
+\emph{Уравнение кривой второго порядка привести к каноническому виду.
+Определить основные параметры (полуости, координаты центра, фокусов, эксцентриситет) и сделать чертеж кривой в исходной системе координат.}
+
+\subsection*{Задание 4}
+
+\emph{Является ли неприводимым многочлен $f$ с коэффициентами в поле вычетов $\mathbb{Z}_{3}$.
+Если нет, разложить его на неприводимые множители}
+\[
+f = x^{4} + x^{3} + x + 2
+\]
+
+\subsection*{Задание 5}
 \textbf{Решить матричное уравнение}
 
 \begin{equation*}
